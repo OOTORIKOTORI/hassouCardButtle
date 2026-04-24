@@ -268,7 +268,7 @@ wss.on('connection', ws => {
         p.answered = true;
         room.answers.set(pid, v);
         send(ws, { type: 'answerAccepted' });
-        bcast(room, { type: 'answerProgress', count: room.answers.size, total: room.players.size }, pid);
+        bcast(room, { type: 'answerProgress', count: room.answers.size, total: room.players.size });
         if (room.answers.size >= room.players.size) finalizeAnswers(room);
         break;
       }

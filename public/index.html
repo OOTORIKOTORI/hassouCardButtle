@@ -4,42 +4,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>発想ゲーム</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0f0f11; --bg2: #1a1a1f; --bg3: #25252c;
-    --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.18);
-    --text: #f0f0f2; --text2: #8888a0; --text3: #555568;
-    --accent: #c8f03c; --accent-dim: rgba(200,240,60,0.12); --accent-border: rgba(200,240,60,0.35);
-    --danger: #ff5f5f; --danger-dim: rgba(255,95,95,0.12);
-    --success: #4cf0a0; --radius: 12px; --radius-sm: 8px;
+    --bg: #FFFBF0; --bg2: #FFFFFF; --bg3: #FFF3E0;
+    --text: #1a1a2e; --text2: #6B6B8A; --text3: #ABABC4;
+    --accent: #FF6B35; --accent-dim: rgba(255,107,53,0.1); --accent-border: rgba(255,107,53,0.3);
+    --yellow: #FFD93D; --yellow-dim: rgba(255,217,61,0.2);
+    --danger: #E63946; --danger-dim: rgba(230,57,70,0.1);
+    --success: #2EC4B6;
+    --border: rgba(26,26,46,0.1); --border2: rgba(26,26,46,0.2);
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --radius: 14px; --radius-sm: 10px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  html, body { height: 100%; background: var(--bg); font-family: 'Noto Sans JP', sans-serif; color: var(--text); font-size: 15px; line-height: 1.5; overscroll-behavior: none; }
+  html, body { height: 100%; background: var(--bg); font-family: 'Nunito', sans-serif; color: var(--text); font-size: 15px; line-height: 1.5; overscroll-behavior: none; }
   body { display: flex; flex-direction: column; align-items: center; }
   #app { width: 100%; max-width: 420px; min-height: 100vh; padding: 24px 16px 48px; }
 
-  h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
-  h2 { font-size: 20px; font-weight: 500; }
+  h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.3px; }
+  h2 { font-size: 20px; font-weight: 700; }
   .dim { color: var(--text2); }
   .small { font-size: 12px; }
   .mono { font-family: 'DM Mono', monospace; }
 
-  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
-  .card-accent { background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: var(--radius); padding: 16px; }
+  .card { background: var(--bg2); border: none; border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px; }
+  .card-accent { background: var(--accent-dim); border: none; border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px; }
 
-  button { font-family: 'Noto Sans JP', sans-serif; cursor: pointer; border: none; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; transition: all 0.15s; }
-  .btn-primary { background: var(--accent); color: #1a1a1f; padding: 14px 20px; width: 100%; font-size: 15px; }
-  .btn-primary:hover { filter: brightness(1.1); }
+  button { font-family: 'Nunito', sans-serif; cursor: pointer; border: none; border-radius: var(--radius-sm); font-size: 14px; font-weight: 700; transition: all 0.15s; }
+  .btn-primary { background: var(--accent); color: #fff; border-radius: var(--radius); padding: 14px 20px; width: 100%; font-size: 15px; }
+  .btn-primary:hover { filter: brightness(1.08); }
   .btn-primary:active { transform: scale(0.98); }
   .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; transform: none; filter: none; }
-  .btn-ghost { background: transparent; color: var(--text2); border: 1px solid var(--border); padding: 12px 20px; width: 100%; }
-  .btn-ghost:hover { background: var(--bg3); color: var(--text); border-color: var(--border2); }
-  .btn-danger { background: var(--danger-dim); color: var(--danger); border: 1px solid rgba(255,95,95,0.25); padding: 6px 10px; font-size: 13px; border-radius: 6px; }
-  .btn-small { background: var(--bg3); color: var(--text2); border: 1px solid var(--border); padding: 8px 14px; font-size: 13px; }
+  .btn-ghost { background: var(--bg3); color: var(--text2); border: none; padding: 12px 20px; width: 100%; }
+  .btn-ghost:hover { background: #ffe7c2; color: var(--text); }
+  .btn-danger { background: var(--danger-dim); color: var(--danger); border: 1px solid rgba(230,57,70,0.25); padding: 6px 10px; font-size: 13px; border-radius: 6px; }
+  .btn-small { background: var(--bg3); color: var(--text2); border: none; padding: 8px 14px; font-size: 13px; }
   .btn-small:hover { background: var(--bg2); color: var(--text); }
 
-  input[type="text"] { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-family: 'Noto Sans JP', sans-serif; font-size: 15px; padding: 12px 14px; width: 100%; outline: none; transition: border-color 0.15s; }
+  input[type="text"] { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-family: 'Nunito', sans-serif; font-size: 15px; padding: 12px 14px; width: 100%; outline: none; transition: border-color 0.15s; }
   input[type="text"]:focus { border-color: var(--accent); }
   input[type="text"]::placeholder { color: var(--text3); }
 
@@ -50,14 +53,14 @@
   .mt8 { margin-top: 8px; } .mt12 { margin-top: 12px; } .mt16 { margin-top: 16px; } .mt24 { margin-top: 24px; }
   .f1 { flex: 1; }
 
-  .badge { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 500; letter-spacing: 0.05em; background: var(--bg3); border: 1px solid var(--border); color: var(--text2); }
-  .badge-accent { background: var(--accent-dim); border-color: var(--accent-border); color: var(--accent); }
-  .badge-danger { background: var(--danger-dim); border-color: rgba(255,95,95,0.3); color: var(--danger); }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; background: var(--yellow); border: none; color: var(--text); }
+  .badge-accent { background: var(--accent); border: none; color: #fff; }
+  .badge-danger { background: var(--danger-dim); border-color: rgba(230,57,70,0.3); color: var(--danger); }
 
-  .stars-on { color: var(--accent); font-size: 11px; }
+  .stars-on { color: var(--yellow); font-size: 11px; }
   .stars-off { color: var(--text3); font-size: 11px; }
 
-  .player-row { display: flex; align-items: center; justify-content: space-between; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; margin-bottom: 6px; }
+  .player-row { display: flex; align-items: center; justify-content: space-between; background: var(--bg2); border: none; border-radius: var(--radius-sm); box-shadow: var(--shadow); padding: 10px 14px; margin-bottom: 6px; }
   .avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--bg3); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
 
   .keyword-box { background: var(--bg3); border: 1px solid var(--border2); border-radius: var(--radius); padding: 20px; text-align: center; }
@@ -65,12 +68,12 @@
   .kw-main { font-size: 26px; font-weight: 700; }
   .kw-main.accent { color: var(--accent); }
 
-  .answer-row { display: flex; align-items: center; justify-content: space-between; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 8px; transition: all 0.3s; animation: fi 0.25s ease; }
+  .answer-row { display: flex; align-items: center; justify-content: space-between; background: var(--bg2); border: none; border-radius: var(--radius-sm); box-shadow: var(--shadow); padding: 14px 16px; margin-bottom: 8px; transition: all 0.3s; animation: fi 0.25s ease; }
   .answer-row.dupe { opacity: 0.35; }
-  .vote-btn { display: flex; align-items: center; justify-content: space-between; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; cursor: pointer; width: 100%; transition: all 0.15s; text-align: left; margin-bottom: 8px; }
-  .vote-btn:hover { background: var(--bg3); border-color: var(--border2); }
-  .score-row { display: flex; align-items: center; justify-content: space-between; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 8px; }
-  .score-row.winner { background: var(--accent-dim); border-color: var(--accent-border); }
+  .vote-btn { display: flex; align-items: center; justify-content: space-between; background: var(--bg2); border: none; border-radius: var(--radius-sm); box-shadow: var(--shadow); padding: 14px 16px; cursor: pointer; width: 100%; transition: all 0.15s; text-align: left; margin-bottom: 8px; }
+  .vote-btn:hover { background: var(--bg3); }
+  .score-row { display: flex; align-items: center; justify-content: space-between; background: var(--bg2); border: none; border-radius: var(--radius-sm); box-shadow: var(--shadow); padding: 14px 16px; margin-bottom: 8px; }
+  .score-row.winner { background: var(--accent-dim); }
   .cd-wrap { position: relative; display: inline-flex; align-items: center; justify-content: center; }
   .cd-num { position: absolute; font-size: 48px; font-weight: 700; font-family: 'DM Mono', monospace; color: var(--accent); }
   .waiting-pulse { display: inline-flex; gap: 4px; align-items: center; }
@@ -81,7 +84,7 @@
   @keyframes fi { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
   .screen { animation: fi 0.2s ease; }
 
-  .room-code { font-family: 'DM Mono', monospace; font-size: 40px; font-weight: 500; letter-spacing: 12px; color: var(--accent); text-align: center; padding: 20px 0; }
+  .room-code { font-family: 'DM Mono', monospace; font-size: 40px; font-weight: 500; letter-spacing: 12px; color: var(--accent); text-align: center; background: var(--bg3); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px 0; }
 
   .progress-bar-wrap { background: var(--bg3); border-radius: 100px; height: 4px; margin-top: 8px; overflow: hidden; }
   .progress-bar { height: 100%; background: var(--accent); border-radius: 100px; transition: width 0.3s; }
@@ -319,8 +322,10 @@ function handleAction(e) {
   if (a === 'submitThemes') {
     const t0 = (document.getElementById('t0')?.value || S.t0).trim();
     const t1 = (document.getElementById('t1')?.value || S.t1).trim();
+    const themes = [t0, t1].filter(Boolean);
+    if (themes.length === 0) return showToast('テーマを1つ以上入力してください');
     S.themeSubmitted = true;
-    wsSend({ type: 'submitThemes', themes: [t0, t1].filter(Boolean) });
+    wsSend({ type: 'submitThemes', themes });
     return;
   }
   if (a === 'removeTheme') { wsSend({ type: 'removeTheme', name: d.name }); return; }
@@ -499,14 +504,14 @@ function renderAnswer() {
 }
 
 function renderAnswerWaiting() {
-  const pct = S.ansTotal ? ((S.ansCount + 1) / S.ansTotal * 100).toFixed(0) : 0;
+  const pct = S.ansTotal ? (S.ansCount / S.ansTotal * 100).toFixed(0) : 0;
   return `
     <div class="tc" style="padding:2rem 0">
       <div class="badge badge-accent mb16">SUBMITTED</div>
       <h2 class="mb8">回答を送信しました！</h2>
       <p class="dim small mb24">全員の回答が揃うまで待ってください</p>
       <div class="waiting-pulse mb24"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-      <p class="dim small mb8">${S.ansCount + 1} / ${S.ansTotal} 人が回答済み</p>
+      <p class="dim small mb8">${S.ansCount} / ${S.ansTotal} 人が回答済み</p>
       <div class="progress-bar-wrap"><div class="progress-bar" style="width:${pct}%"></div></div>
     </div>
   `;
